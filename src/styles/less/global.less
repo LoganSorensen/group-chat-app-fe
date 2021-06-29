@@ -15,8 +15,43 @@ html {
 body {
   background-color: @bg-light;
   color: @text-white;
+  font-size: 1.8rem;
 }
 
 .App {
   display: flex;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+}
+
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.img-wrapper {
+  width: 4.2rem;
+  height: 4.2rem;
+  background-color: @text-gray;
+  border-radius: 7px;
+  overflow: hidden;
+  margin-right: 2.8rem;
+
+  img {
+    width: 100%;
+  }
+}
+
+.user-name {
+  font-weight: 700;
+  color: @text-gray;
+}
+
+.top-tab {
+  padding: 1.724rem 0;
+    max-height: @top-tab-height;
+    min-height: @top-tab-height;
 }

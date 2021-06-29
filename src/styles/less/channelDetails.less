@@ -1,0 +1,54 @@
+.channel-details {
+  .top-tab {
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .channel-info {
+    position: relative;
+    padding: 0 3.3rem;
+    padding-bottom: 2.5rem;
+    max-height: 100vh - @user-tab-height - @top-tab-height;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 6px;
+      padding-right: 20px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 24px;
+      background: @text-gray;
+    }
+    &::-webkit-scrollbar-track {
+      margin-bottom: 2.5rem;
+      background: @bg-black;
+    }
+  }
+
+  h2 {
+    font-weight: 700;
+    margin-bottom: 1.78rem;
+    text-transform: uppercase;
+  }
+
+  .channel-desc {
+    line-height: 2.45rem;
+    letter-spacing: -3.5%;
+    margin-bottom: 4.35rem;
+  }
+
+  .members-header {
+    margin-bottom: 2.5rem;
+  }
+
+  //   .member-list {
+  //     overflow: auto;
+  //     height: 10%;
+  //     // max-height: 10%;
+  //     max-height: 100vh - @user-tab-height - @top-tab-height - 30vh;
+  //     margin-bottom: 15rem;
+  //   }
+
+  .member {
+    margin-bottom: 3.2rem;
+  }
+}
