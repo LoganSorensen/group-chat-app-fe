@@ -1,6 +1,6 @@
 import React from "react";
 
-import {members} from '../utils/data'
+import { members } from "../utils/data";
 
 const UserTab = () => {
   return (
