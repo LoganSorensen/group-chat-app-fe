@@ -1,12 +1,16 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import { members } from "../utils/data";
+import { setSidebarComponent } from "../actions/setPageStateActions";
 
-const ChannelDetails = () => {
+const ChannelDetails = ({ setSidebarComponent }) => {
+  const handleClick = () => setSidebarComponent("channelList");
+
   return (
     <div className="channel-details">
       <div className="top-tab align-center">
-        <button className="back-btn align-center">
+        <button className="back-btn align-center" onClick={handleClick}>
           <span className="material-icons-outlined">arrow_back_ios</span>
         </button>
         <p>All channels</p>
@@ -33,4 +37,4 @@ const ChannelDetails = () => {
   );
 };
 
-export default ChannelDetails;
+export default connect(null, { setSidebarComponent })(ChannelDetails);

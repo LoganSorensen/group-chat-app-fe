@@ -1,15 +1,23 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import UserTab from "./userTab";
 import ChannelDetails from "./channelDetails";
+import ChannelList from "./channelList";
 
-const Sidebar = () => {
+const Sidebar = ({ sidebarComponent }) => {
   return (
     <div className="sidebar">
-      <ChannelDetails />
+      {sidebarComponent === "channelDetails" && <ChannelDetails />}
+      {sidebarComponent === "channelList" && <ChannelList />}
+
       <UserTab />
     </div>
   );
 };
 
-export default Sidebar;
+const mapStateToProps = (state) => ({
+  sidebarComponent: state.setPageState.sidebarComponent,
+});
+
+export default connect(mapStateToProps, {})(Sidebar);

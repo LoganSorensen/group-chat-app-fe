@@ -50,3 +50,26 @@ export const members = [
       "https://images.unsplash.com/photo-1607569708758-0270aa4651bd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
   },
 ];
+
+export const channels = [
+  {
+    name: "Front-End Developers",
+    abbr: "FD",
+  },
+  {
+    name: "Random",
+    abbr: "R",
+  },
+  {
+    name: "Back-End",
+    abbr: "B",
+  },
+  {
+    name: "Cats and Dogs",
+    abbr: "CD",
+  },
+  {
+    name: "Welcome",
+    abbr: "W",
+  },
+];
