@@ -1,0 +1,57 @@
+.add-channel-form {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  padding: 3.4rem 4rem 2.2rem;
+  margin: auto;
+  inset: 0;
+  width: 65.6rem;
+  height: 35.9rem;
+  background-color: @bg-dark;
+  border-radius: 24px;
+
+  h3 {
+    text-transform: uppercase;
+    margin-bottom: 2.66rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  input,
+  textarea {
+    font-size: 1.8rem;
+    background-color: @bg-hover;
+    color: @text-white;
+    padding: 1.15rem 1.56rem;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    &::placeholder {
+      color: @text-gray;
+    }
+  }
+
+  input {
+    margin-bottom: 2.65rem;
+  }
+
+  textarea {
+    resize: none;
+    margin-bottom: 2.15rem;
+    height: 11.55rem;
+  }
+
+  button {
+    font-size: 1.8rem;
+    width: 9.9rem;
+    padding: 0.7rem 3rem;
+    color: #f2f2f2;
+    background-color: #2f80ed;
+    border: none;
+    border-radius: 8px;
+  }
+}

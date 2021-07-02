@@ -183,6 +183,14 @@ a {
   max-height: 5.5vh;
   min-height: 5.5vh;
 }
+.body-blackout {
+  display: none;
+  background-color: rgba(18, 15, 19, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 2;
+}
 .sidebar {
   width: 22vw;
   height: 100vh;
@@ -362,8 +370,62 @@ a {
 }
 .channel-list .channel-abbr {
   width: 4.2rem;
+  min-width: 4.2rem;
   height: 4.2rem;
+  min-height: 4.2rem;
   background-color: #252329;
   margin-right: 1.2rem;
+  border-radius: 8px;
+}
+.add-channel-form {
+  display: none;
+  position: absolute;
+  z-index: 3;
+  padding: 3.4rem 4rem 2.2rem;
+  margin: auto;
+  inset: 0;
+  width: 65.6rem;
+  height: 35.9rem;
+  background-color: #120f13;
+  border-radius: 24px;
+}
+.add-channel-form h3 {
+  text-transform: uppercase;
+  margin-bottom: 2.66rem;
+}
+.add-channel-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.add-channel-form input,
+.add-channel-form textarea {
+  font-size: 1.8rem;
+  background-color: #3c393f;
+  color: #e0e0e0;
+  padding: 1.15rem 1.56rem;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+}
+.add-channel-form input::placeholder,
+.add-channel-form textarea::placeholder {
+  color: #828282;
+}
+.add-channel-form input {
+  margin-bottom: 2.65rem;
+}
+.add-channel-form textarea {
+  resize: none;
+  margin-bottom: 2.15rem;
+  height: 11.55rem;
+}
+.add-channel-form button {
+  font-size: 1.8rem;
+  width: 9.9rem;
+  padding: 0.7rem 3rem;
+  color: #f2f2f2;
+  background-color: #2f80ed;
+  border: none;
   border-radius: 8px;
 }

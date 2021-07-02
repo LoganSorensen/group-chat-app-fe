@@ -10,7 +10,6 @@ const Sidebar = ({ sidebarComponent }) => {
     <div className="sidebar">
       {sidebarComponent === "channelDetails" && <ChannelDetails />}
       {sidebarComponent === "channelList" && <ChannelList />}
-
       <UserTab />
     </div>
   );
