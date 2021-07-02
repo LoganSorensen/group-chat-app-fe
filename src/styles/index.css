@@ -230,12 +230,83 @@ a {
   background-color: #252329;
   height: 100vh;
   width: 78vw;
+  padding-bottom: 3.9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .chat-window .channel-name-tab {
   font-weight: 700;
   text-transform: uppercase;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 1.724rem 7rem;
+}
+.messages {
+  padding: 3rem 7rem;
+  overflow: auto;
+}
+.messages::-webkit-scrollbar {
+  width: 10px;
+  padding-right: 20px;
+}
+.messages::-webkit-scrollbar-thumb {
+  border-radius: 24px;
+  background: #828282;
+}
+.messages::-webkit-scrollbar-track {
+  border-radius: 24px;
+  margin-bottom: 2.5rem;
+  background: #0b090c;
+}
+.messages .message {
+  margin-bottom: 3.8rem;
+  display: flex;
+}
+.messages h4,
+.messages span {
+  color: #828282;
+  margin-bottom: 1.1rem;
+}
+.messages h4 {
+  font-weight: 700;
+  margin-right: 2.5rem;
+}
+.messages span {
+  font-size: 1.4rem;
+}
+.messages p {
+  line-height: 2.45rem;
+}
+.message-input {
+  padding: 0 7rem;
+}
+.message-input form {
+  position: relative;
+}
+.message-input input {
+  width: 100%;
+  background-color: #3c393f;
+  color: #e0e0e0;
+  padding: 1.6rem 4.7rem 1.7rem 1.7rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.4rem;
+}
+.message-input input::placeholder {
+  color: #828282;
+}
+.message-input button {
+  position: absolute;
+  right: 0.7rem;
+  color: white;
+  background-color: #2f80ed;
+  border: none;
+  border-radius: 8px;
+  width: 3.9rem;
+  min-width: 3.9rem;
+  height: 3.9rem;
+  min-height: 3.9rem;
+  cursor: pointer;
 }
 .channel-details .top-tab {
   padding-left: 2rem;
