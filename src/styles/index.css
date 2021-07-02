@@ -142,6 +142,9 @@ body {
   color: #e0e0e0;
   font-size: 1.8rem;
 }
+a {
+  text-decoration: none;
+}
 .App {
   display: flex;
 }
@@ -155,7 +158,9 @@ body {
 }
 .img-wrapper {
   width: 4.2rem;
+  min-width: 4.2rem;
   height: 4.2rem;
+  min-height: 4.2rem;
   background-color: #828282;
   border-radius: 7px;
   overflow: hidden;
@@ -257,4 +262,43 @@ body {
 }
 .channel-details .member {
   margin-bottom: 3.2rem;
+}
+.user-options {
+  position: absolute;
+  bottom: 61%;
+  right: 7%;
+  padding: 1.5rem;
+  border: 1px solid #3c393f;
+  border-radius: 12px;
+  background-color: #252329;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+.user-options a,
+.user-options button {
+  font-size: 1.2rem;
+  width: 16.4rem;
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+}
+.user-options a:hover,
+.user-options button:hover {
+  background-color: #3c393f;
+}
+.user-options a span,
+.user-options button span {
+  margin-right: 1.1rem;
+}
+.user-options a {
+  color: #e0e0e0;
+}
+.user-options hr {
+  border: 0;
+  height: 1px;
+  background-color: #3c393f;
+}
+.user-options button {
+  background-color: transparent;
+  border: none;
+  color: #eb5757;
+  cursor: pointer;
 }
