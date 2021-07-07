@@ -1,10 +1,43 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 
-import { channels } from "../utils/data";
+// import { channels } from "../utils/data";
 import { setSidebarComponent } from "../actions/setPageStateActions";
 
 const ChannelList = ({ setSidebarComponent }) => {
+  const [channels, setChannels] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/channels")
+      .then((res) => {
+        console.log(res.data);
+        setChannels(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const abbreviateName = (name) => {
+    const words = name.split(" ");
+    const ignoredWords = ["a", "an", "the", "and"];
+    const allowedWords = [];
+
+    let abbr = "";
+
+    words.forEach((word) => {
+      if (!ignoredWords.includes(word.toLowerCase())) {
+        allowedWords.push(word);
+      }
+    });
+
+    for (let i = 0; i <= 1; i++) {
+      abbr = abbr + allowedWords[i].charAt(0);
+    }
+
+    return abbr;
+  };
+
   const joinChannel = () => setSidebarComponent("channelDetails");
 
   const openModal = () => {
@@ -45,8 +78,10 @@ const ChannelList = ({ setSidebarComponent }) => {
             className="channel align-center"
             onClick={joinChannel}
           >
-            <div className="channel-abbr flex-center">{channel.abbr}</div>
-            <p className="channel-name">{channel.name}</p>
+            <div className="channel-abbr flex-center">
+              {abbreviateName(channel.channel_name)}
+            </div>
+            <p className="channel-name">{channel.channel_name}</p>
           </div>
         ))}
       </div>

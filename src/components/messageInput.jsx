@@ -20,7 +20,7 @@ const MessageInput = () => {
           onChange={handleChange}
         />
         <button className="flex-center">
-          <span class="material-icons">send</span>
+          <span className="material-icons">send</span>
         </button>
       </form>
     </div>
