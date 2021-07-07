@@ -439,6 +439,10 @@ a {
 .channel-list .channel:hover {
   background-color: #3c393f;
 }
+.channel-list .channel-name,
+.channel-list .channel-abbr {
+  pointer-events: none;
+}
 .channel-list .channel-abbr {
   width: 4.2rem;
   min-width: 4.2rem;

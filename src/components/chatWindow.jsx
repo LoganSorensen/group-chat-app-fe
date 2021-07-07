@@ -1,5 +1,6 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import io from "socket.io-client";
+import { connect } from "react-redux";
 
 import { messages } from "../utils/data";
 import Message from "./message";
@@ -7,7 +8,7 @@ import MessageInput from "./messageInput";
 
 let socket;
 
-const ChatWindow = () => {
+const ChatWindow = ({ roomName }) => {
   const ENDPOINT = "localhost:5000";
 
   const connectionOptions = {
@@ -16,6 +17,8 @@ const ChatWindow = () => {
     timeout: 10000,
     transports: ["websocket"],
   };
+
+  console.log({ roomName });
 
   useEffect(() => {
     socket = io(ENDPOINT, connectionOptions);
@@ -31,7 +34,7 @@ const ChatWindow = () => {
 
       socket.off();
     };
-    // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, [ENDPOINT]);
 
   useEffect(() => {
@@ -42,7 +45,7 @@ const ChatWindow = () => {
 
   return (
     <div className="chat-window">
-      <div className="channel-name-tab top-tab">Front-End Developers</div>
+      <div className="channel-name-tab top-tab">{roomName}</div>
       <div className="messages">
         {messages.map((message, index) => (
           <Message key={index} message={message} />
@@ -53,4 +56,8 @@ const ChatWindow = () => {
   );
 };
 
-export default ChatWindow;
+const mapStateToProps = (state) => ({
+  roomName: state.setChatState.currentRoom,
+});
+
+export default connect(mapStateToProps, {})(ChatWindow);

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-// import { channels } from "../utils/data";
 import { setSidebarComponent } from "../actions/setPageStateActions";
+import { setCurrentRoom } from "../actions/setChatStateActions";
 
-const ChannelList = ({ setSidebarComponent }) => {
+const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
   const [channels, setChannels] = useState([]);
 
   useEffect(() => {
@@ -38,7 +38,11 @@ const ChannelList = ({ setSidebarComponent }) => {
     return abbr;
   };
 
-  const joinChannel = () => setSidebarComponent("channelDetails");
+  const joinChannel = (name) => {
+    console.log(name)
+    setCurrentRoom(name)
+    setSidebarComponent("channelDetails")
+  };
 
   const openModal = () => {
     const bodyBlackout = document.querySelector(".body-blackout");
@@ -76,7 +80,8 @@ const ChannelList = ({ setSidebarComponent }) => {
           <div
             key={index}
             className="channel align-center"
-            onClick={joinChannel}
+            name={channel.channel_name}
+            onClick={() => joinChannel(channel.channel_name)}
           >
             <div className="channel-abbr flex-center">
               {abbreviateName(channel.channel_name)}
@@ -89,4 +94,4 @@ const ChannelList = ({ setSidebarComponent }) => {
   );
 };
 
-export default connect(null, { setSidebarComponent })(ChannelList);
+export default connect(null, { setSidebarComponent, setCurrentRoom })(ChannelList);
