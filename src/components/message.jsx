@@ -9,7 +9,7 @@ const Message = ({ message }) => {
       <div className="message-details">
         <div className='align-center'>
           <h4>{message.user}</h4>
-          <span>{message.time}</span>
+          <span>{message.timestamp}</span>
         </div>
         <p>{message.text}</p>
       </div>

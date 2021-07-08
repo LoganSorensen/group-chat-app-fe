@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+import { Link, useHistory } from "react-router-dom";
 
 import { setSidebarComponent } from "../actions/setPageStateActions";
 import { setCurrentRoom } from "../actions/setChatStateActions";
 
 const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
   const [channels, setChannels] = useState([]);
+
+  // const history = useHistory();
 
   useEffect(() => {
     axios
@@ -39,9 +42,11 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
   };
 
   const joinChannel = (name) => {
-    console.log(name)
-    setCurrentRoom(name)
-    setSidebarComponent("channelDetails")
+    console.log(name);
+    setCurrentRoom(name);
+    setSidebarComponent("channelDetails");
+    // history.push(`/${name}`)
+    // window.location.reload();
   };
 
   const openModal = () => {
@@ -77,7 +82,8 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
       </div>
       <div className="channels">
         {channels.map((channel, index) => (
-          <div
+          <Link
+          to={`/${channel.id}`}
             key={index}
             className="channel align-center"
             name={channel.channel_name}
@@ -87,11 +93,13 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
               {abbreviateName(channel.channel_name)}
             </div>
             <p className="channel-name">{channel.channel_name}</p>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
   );
 };
 
-export default connect(null, { setSidebarComponent, setCurrentRoom })(ChannelList);
+export default connect(null, { setSidebarComponent, setCurrentRoom })(
+  ChannelList
+);
