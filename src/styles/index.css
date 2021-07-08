@@ -244,6 +244,7 @@ a {
 .messages {
   padding: 3rem 7rem;
   overflow: auto;
+  max-height: 84.5vh;
 }
 .messages::-webkit-scrollbar {
   width: 10px;

@@ -1,7 +1,9 @@
 import { SET_CURRENT_ROOM } from "../actions/types";
 
 const initialState = {
-  currentRoom: 'test',
+  currentRoom: 'Welcome',
+  username: '',
+  user_id: ''
 };
 
 export const setChatState = (state = initialState, action) => {

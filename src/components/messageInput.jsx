@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const MessageInput = () => {
+const MessageInput = ({sendMessage}) => {
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => setMessage(e.target.value);
@@ -8,6 +8,7 @@ const MessageInput = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setMessage("");
+    sendMessage(message);
   };
 
   return (
