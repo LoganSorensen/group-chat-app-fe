@@ -13,7 +13,6 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
     axios
       .get("http://localhost:5000/api/channels")
       .then((res) => {
-        console.log(res.data);
         setChannels(res.data);
       })
       .catch((err) => console.log(err));
@@ -40,7 +39,6 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
   };
 
   const joinChannel = (channel) => {
-    console.log(channel);
     setCurrentChannel(channel);
     setSidebarComponent("channelDetails");
   };

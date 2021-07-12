@@ -7,7 +7,7 @@ const Message = ({ message }) => {
         <img src={message.image} alt={message.name} />
       </div>
       <div className="message-details">
-        <div className='align-center'>
+        <div className="align-center">
           <h4>{message.user}</h4>
           <span>{message.timestamp}</span>
         </div>

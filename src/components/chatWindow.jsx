@@ -7,10 +7,11 @@ import axios from "axios";
 // import { messages } from "../utils/data";
 import Message from "./message";
 import MessageInput from "./messageInput";
+import { setChannelUsers } from "../actions/setChatStateActions";
 
 let socket;
 
-const ChatWindow = ({ channel }) => {
+const ChatWindow = ({ channel, setChannelUsers }) => {
   const [messages, setMessages] = useState([]);
 
   const { channelId } = useParams();
@@ -28,19 +29,17 @@ const ChatWindow = ({ channel }) => {
     axios
       .get(`http://localhost:5000/api/messages/${channelId}`)
       .then((res) => {
-        console.log(res.data);
         setMessages(res.data);
       })
       .catch((err) => console.log(err));
 
-    console.log("this is running");
     socket = io(ENDPOINT, connectionOptions);
 
     let username = "John";
     let room = channel.channel_name;
+    console.log(room)
 
     socket.emit("joinRoom", { username, room });
-    console.log("joined");
 
     return () => {
       socket.disconnect();
@@ -52,12 +51,16 @@ const ChatWindow = ({ channel }) => {
   useEffect(() => {
     const chatMessages = document.querySelector(".messages");
     socket.on("message", (message) => {
-      console.log(message);
       setMessages((messages) => [...messages, message]);
 
       // Scroll to bottom
       chatMessages.scrollTop = chatMessages.scrollHeight;
     });
+  }, []);
+
+  useEffect(() => {
+    socket.on("roomData", ({ users }) => setChannelUsers(users));
+    // eslint-disable-next-line
   }, []);
 
   const sendMessage = (message) => {
@@ -85,4 +88,4 @@ const mapStateToProps = (state) => ({
   channel: state.setChatState.currentChannel,
 });
 
-export default connect(mapStateToProps, {})(ChatWindow);
+export default connect(mapStateToProps, { setChannelUsers })(ChatWindow);

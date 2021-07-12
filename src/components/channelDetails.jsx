@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { members } from "../utils/data";
 import { setSidebarComponent } from "../actions/setPageStateActions";
 
-const ChannelDetails = ({ setSidebarComponent, channel }) => {
+const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
   const handleClick = () => setSidebarComponent("channelList");
-console.log({channel})
+
   return (
     <div className="channel-details">
       <div className="top-tab align-center">
@@ -17,17 +16,15 @@ console.log({channel})
       </div>
       <div className="channel-info">
         <h2>{channel.channel_name}</h2>
-        <p className="channel-desc">
-          {channel.channel_description}
-        </p>
+        <p className="channel-desc">{channel.channel_description}</p>
         <h2 className="members-header">Members</h2>
         <div className="member-list">
-          {members.map((member, index) => (
-            <div key={index} className="member align-center">
+          {users.map((user) => (
+            <div key={user.id} className="member align-center">
               <div className="img-wrapper">
-                <img src={member.image} alt={member.name} />
+                {/* <img src={user.image} alt={user.username} /> */}
               </div>
-              <p className="user-name">{member.name}</p>
+              <p className="user-name">{user.username}</p>
             </div>
           ))}
         </div>
@@ -38,6 +35,9 @@ console.log({channel})
 
 const mapStateToProps = (state) => ({
   channel: state.setChatState.currentChannel,
-})
+  users: state.setChatState.users,
+});
 
-export default connect(mapStateToProps, { setSidebarComponent })(ChannelDetails);
+export default connect(mapStateToProps, { setSidebarComponent })(
+  ChannelDetails
+);

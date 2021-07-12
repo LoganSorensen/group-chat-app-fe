@@ -505,3 +505,101 @@ a {
   border: none;
   border-radius: 8px;
 }
+.auth-form {
+  width: 47.4rem;
+  padding: 5.1rem 5.9rem 4.3rem;
+  margin: 10rem auto 0;
+  border: 1px solid #bdbdbd;
+  border-radius: 24px;
+}
+.auth-form .logo {
+  margin-bottom: 3rem;
+}
+.auth-form h2 {
+  color: #e0e0e0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  width: 30rem;
+  margin-bottom: 2.72rem;
+}
+.auth-form p {
+  color: #e0e0e0;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 21.79px;
+  letter-spacing: -0.035em;
+  margin-bottom: 3.46rem;
+}
+.auth-form form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3.2rem;
+}
+.auth-form form .input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2.25rem;
+}
+.auth-form form .email-wrapper {
+  margin-bottom: 1.45rem;
+}
+.auth-form form input {
+  width: 100%;
+  border: 1px solid #bdbdbd;
+  border-radius: 8px;
+  color: #333333;
+  font-size: 1.6rem;
+  font-weight: 400;
+  padding: 1.3rem;
+  padding-left: 4.69rem;
+}
+.auth-form form input::placeholder {
+  color: #828282;
+}
+.auth-form form .lock-icon,
+.auth-form form .email-icon {
+  color: #828282;
+  position: absolute;
+  left: 1.4rem;
+}
+.auth-form form button {
+  width: 100%;
+  color: white;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #2f80ed;
+  padding: 0.7rem 0 0.9rem;
+}
+.auth-form .alt-auth-opt {
+  text-align: center;
+  color: #828282;
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 2.25rem;
+}
+.auth-form .alt-auth-btns {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2.7rem;
+}
+.auth-form .logo-btn {
+  cursor: pointer;
+}
+.auth-form .switch-auth {
+  text-align: center;
+  color: #828282;
+  font-size: 1.4rem;
+  margin: 0;
+}
+.auth-form .switch-auth a {
+  color: #2d9cdb;
+}
+.login-form h2 {
+  margin-bottom: 2.72rem;
+}
