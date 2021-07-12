@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { setSidebarComponent } from "../actions/setPageStateActions";
-import { setCurrentRoom } from "../actions/setChatStateActions";
+import { setCurrentChannel } from "../actions/setChatStateActions";
 
-const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
+const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
   const [channels, setChannels] = useState([]);
-
-  // const history = useHistory();
 
   useEffect(() => {
     axios
@@ -41,12 +39,10 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
     return abbr;
   };
 
-  const joinChannel = (name) => {
-    console.log(name);
-    setCurrentRoom(name);
+  const joinChannel = (channel) => {
+    console.log(channel);
+    setCurrentChannel(channel);
     setSidebarComponent("channelDetails");
-    // history.push(`/${name}`)
-    // window.location.reload();
   };
 
   const openModal = () => {
@@ -83,11 +79,11 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
       <div className="channels">
         {channels.map((channel, index) => (
           <Link
-          to={`/${channel.id}`}
+            to={`/${channel.id}`}
             key={index}
             className="channel align-center"
             name={channel.channel_name}
-            onClick={() => joinChannel(channel.channel_name)}
+            onClick={() => joinChannel(channel)}
           >
             <div className="channel-abbr flex-center">
               {abbreviateName(channel.channel_name)}
@@ -100,6 +96,6 @@ const ChannelList = ({ setSidebarComponent, setCurrentRoom }) => {
   );
 };
 
-export default connect(null, { setSidebarComponent, setCurrentRoom })(
+export default connect(null, { setSidebarComponent, setCurrentChannel })(
   ChannelList
 );

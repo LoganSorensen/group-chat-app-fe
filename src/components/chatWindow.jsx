@@ -10,7 +10,7 @@ import MessageInput from "./messageInput";
 
 let socket;
 
-const ChatWindow = ({ roomName }) => {
+const ChatWindow = ({ channel }) => {
   const [messages, setMessages] = useState([]);
 
   const { channelId } = useParams();
@@ -25,11 +25,11 @@ const ChatWindow = ({ roomName }) => {
   };
 
   useEffect(() => {
-     axios
+    axios
       .get(`http://localhost:5000/api/messages/${channelId}`)
-      .then(res => {
-        console.log(res.data)
-        setMessages(res.data)
+      .then((res) => {
+        console.log(res.data);
+        setMessages(res.data);
       })
       .catch((err) => console.log(err));
 
@@ -37,7 +37,7 @@ const ChatWindow = ({ roomName }) => {
     socket = io(ENDPOINT, connectionOptions);
 
     let username = "John";
-    let room = roomName;
+    let room = channel.channel_name;
 
     socket.emit("joinRoom", { username, room });
     console.log("joined");
@@ -67,7 +67,7 @@ const ChatWindow = ({ roomName }) => {
 
   return (
     <div className="chat-window">
-      <div className="channel-name-tab top-tab">{roomName}</div>
+      <div className="channel-name-tab top-tab">{channel.channel_name}</div>
 
       <div>
         <div className="messages">
@@ -82,7 +82,7 @@ const ChatWindow = ({ roomName }) => {
 };
 
 const mapStateToProps = (state) => ({
-  roomName: state.setChatState.currentRoom,
+  channel: state.setChatState.currentChannel,
 });
 
 export default connect(mapStateToProps, {})(ChatWindow);

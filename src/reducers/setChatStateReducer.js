@@ -1,17 +1,17 @@
-import { SET_CURRENT_ROOM } from "../actions/types";
+import { SET_CURRENT_CHANNEL } from "../actions/types";
 
 const initialState = {
-  currentRoom: 'Welcome',
+  currentChannel: 'Welcome',
   username: '',
   user_id: ''
 };
 
 export const setChatState = (state = initialState, action) => {
   switch (action.type) {
-      case SET_CURRENT_ROOM: 
+      case SET_CURRENT_CHANNEL: 
       return {
           ...state,
-          currentRoom: action.payload
+          currentChannel: action.payload
       }
     default:
       return state;

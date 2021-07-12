@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import { members } from "../utils/data";
 import { setSidebarComponent } from "../actions/setPageStateActions";
 
-const ChannelDetails = ({ setSidebarComponent }) => {
+const ChannelDetails = ({ setSidebarComponent, channel }) => {
   const handleClick = () => setSidebarComponent("channelList");
-
+console.log({channel})
   return (
     <div className="channel-details">
       <div className="top-tab align-center">
@@ -16,10 +16,9 @@ const ChannelDetails = ({ setSidebarComponent }) => {
         <p>All channels</p>
       </div>
       <div className="channel-info">
-        <h2>Front-End Developers</h2>
+        <h2>{channel.channel_name}</h2>
         <p className="channel-desc">
-          Pellentesque sagittis elit enim, sit amet ultrices tellus accumsan
-          quis. In gravida mollis purus, at interdum arcu tempor non
+          {channel.channel_description}
         </p>
         <h2 className="members-header">Members</h2>
         <div className="member-list">
@@ -37,4 +36,8 @@ const ChannelDetails = ({ setSidebarComponent }) => {
   );
 };
 
-export default connect(null, { setSidebarComponent })(ChannelDetails);
+const mapStateToProps = (state) => ({
+  channel: state.setChatState.currentChannel,
+})
+
+export default connect(mapStateToProps, { setSidebarComponent })(ChannelDetails);
