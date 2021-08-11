@@ -14,7 +14,11 @@ function App() {
       <Route path="/chat">
         <Sidebar />
         <Route exact path="/chat/:channelId" component={ChatWindow} />
-        {/* <ChatWindow /> */}
+        <Route exact path="/chat">
+          <div className="join-channel-msg">
+            Join a channel to start chatting!
+          </div>
+        </Route>
         <AddChannelForm />
       </Route>
     </div>

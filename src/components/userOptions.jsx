@@ -5,7 +5,8 @@ const UserOptions = ({ optionsOpen, setOptionsOpen }) => {
   const history = useHistory();
   const logout = () => {
     localStorage.removeItem("token");
-    history.push("/login");
+    localStorage.removeItem("user");
+    history.push("/");
   };
 
   const handleBlur = (e) => {

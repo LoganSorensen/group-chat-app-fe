@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
+
+
+import { setUser } from "../actions/setUserStateActions";
+
 
 // import { ReactComponent as Logo } from "../assets/devchallenges.svg";
 // import { ReactComponent as LogoLight } from "../assets/devchallenges-light.svg";
@@ -9,9 +14,9 @@ import axios from "axios";
 // import { ReactComponent as GithubLogo } from "../assets/Github.svg";
 // import GoogleLoginBtn from "./googleLoginBtn";
 
-const Register = () => {
+const Register = ({setUser}) => {
   const [userCredentials, setUserCredentials] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const history = useHistory();
@@ -23,11 +28,13 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/users/register", userCredentials)
+      .post("http://localhost:5000/api/auth/register", userCredentials)
       .then((res) => {
+        setUser(res.data.user)
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("id", res.data.id);
-        history.push("/");
+        // localStorage.setItem("id", res.data.id);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        history.push("/chat");
       })
       .catch((err) => console.log(err));
   };
@@ -38,12 +45,12 @@ const Register = () => {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-wrapper email-wrapper">
-          <span className="material-icons email-icon">email</span>
+          <span className="material-icons email-icon">person</span>
           <input
-            type="email"
-            placeholder="Email"
-            name="email"
-            value={userCredentials.email}
+            type="text"
+            placeholder="Username"
+            name="username"
+            value={userCredentials.username}
             onChange={handleChange}
           />
         </div>
@@ -74,4 +81,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default connect(null, {setUser})(Register);
