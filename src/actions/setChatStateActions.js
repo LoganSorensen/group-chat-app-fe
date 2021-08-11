@@ -1,7 +1,7 @@
 import { SET_CURRENT_CHANNEL, SET_CHANNEL_USERS } from "./types";
 
 export const setCurrentChannel = (channel) => {
-    console.log(channel)
+    // console.log(channel)
   return { type: SET_CURRENT_CHANNEL, payload: channel };
 };
 

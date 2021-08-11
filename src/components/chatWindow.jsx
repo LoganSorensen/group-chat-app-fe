@@ -4,15 +4,12 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-// import { messages } from "../utils/data";
 import Message from "./message";
 import MessageInput from "./messageInput";
 import {
   setChannelUsers,
   setCurrentChannel,
 } from "../actions/setChatStateActions";
-
-// let socket;
 
 const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   const [messages, setMessages] = useState([]);
@@ -22,24 +19,13 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
 
   const { channelId } = useParams();
 
-  // const ENDPOINT = "localhost:5000";
-
-  // const connectionOptions = {
-  //   "force new connection": true,
-  //   reconnectionAttempts: "Infinity",
-  //   timeout: 10000,
-  //   transports: ["websocket"],
-  // };
-
-  console.log(channel);
-
   useEffect(() => {
     console.log("joining a new room");
 
     socket.current = io("ws://localhost:8800");
 
     socket.current.on("message", (data) => {
-      console.log("message data", data);
+      // console.log("message data", data);
       setNewMessage(data);
     });
   }, []);
@@ -47,8 +33,6 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   useEffect(() => {
     setMessages((prev) => [...prev, newMessage]);
   }, [newMessage]);
-
-  // console.log(messages);
 
   // Gets previous messages from a room
   useEffect(() => {
@@ -65,28 +49,16 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
     // let room = channel.channel_name;
     // console.log(room)
 
-    console.log(
-      `leaving ${previousChannel?.channel_name} and joining ${channel?.channel_name}`
-    );
-
     socket.current.emit("joinRoom", {
       username: user.username,
       channel: channel?.channel_name,
-      previousChannel: previousChannel?.channel_name
+      previousChannel: previousChannel?.channel_name,
     });
 
-    setPreviousChannel(channel)
+    setPreviousChannel(channel);
 
-    // console.log(channel.channel_name);
-
-    // return () => {
-    //   socket.current.disconnect();
-    //   socket.current.off();
-    // };
     // eslint-disable-next-line
-  }, [channelId]);
-
-  console.log(channelId);
+  }, [channelId, channel]);
 
   // useEffect(() => {
   //   const chatMessages = document.querySelector(".messages");
@@ -113,17 +85,22 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   };
 
   return (
-    <div className="chat-window">
+    <div className={channel ? "chat-window" : "no-channel chat-window"}>
       <div className="channel-name-tab top-tab">{channel?.channel_name}</div>
-
-      <div>
-        <div className="messages">
-          {messages.map((message, index) => (
-            <Message key={index} message={message} />
-          ))}
+      {channel ? (
+        <div>
+          <div className="messages">
+            {messages.map((message, index) => (
+              <Message key={index} message={message} />
+            ))}
+          </div>
+          <MessageInput sendMessage={sendMessage} />
         </div>
-        <MessageInput sendMessage={sendMessage} />
-      </div>
+      ) : (
+        <div className="join-channel-msg">
+          Join a channel to start chatting!
+        </div>
+      )}
     </div>
   );
 };
