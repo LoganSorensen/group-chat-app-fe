@@ -16,7 +16,8 @@ import {
 
 const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   const [messages, setMessages] = useState([]);
-  const [newMessage, setNewMessage] = useState(null)
+  const [newMessage, setNewMessage] = useState(null);
+  const [previousChannel, setPreviousChannel] = useState(channel);
   const socket = useRef();
 
   const { channelId } = useParams();
@@ -30,7 +31,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   //   transports: ["websocket"],
   // };
 
-  // console.log(channel);
+  console.log(channel);
 
   useEffect(() => {
     console.log("joining a new room");
@@ -44,8 +45,8 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   }, []);
 
   useEffect(() => {
-    setMessages(prev => [...prev, newMessage])
-  }, [newMessage])
+    setMessages((prev) => [...prev, newMessage]);
+  }, [newMessage]);
 
   // console.log(messages);
 
@@ -64,12 +65,19 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
     // let room = channel.channel_name;
     // console.log(room)
 
+    console.log(
+      `leaving ${previousChannel?.channel_name} and joining ${channel?.channel_name}`
+    );
+
     socket.current.emit("joinRoom", {
       username: user.username,
-      channel: channel.channel_name,
+      channel: channel?.channel_name,
+      previousChannel: previousChannel?.channel_name
     });
 
-    console.log(channel.channel_name)
+    setPreviousChannel(channel)
+
+    // console.log(channel.channel_name);
 
     // return () => {
     //   socket.current.disconnect();
@@ -78,7 +86,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
     // eslint-disable-next-line
   }, [channelId]);
 
-  console.log(channelId)
+  console.log(channelId);
 
   // useEffect(() => {
   //   const chatMessages = document.querySelector(".messages");
@@ -97,8 +105,6 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   // }, []);
 
   const sendMessage = (message) => {
-    console.log("hitting");
-
     socket.current.emit("chatMessage", {
       senderId: user.id,
       message,
@@ -108,7 +114,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
 
   return (
     <div className="chat-window">
-      <div className="channel-name-tab top-tab">{channel.channel_name}</div>
+      <div className="channel-name-tab top-tab">{channel?.channel_name}</div>
 
       <div>
         <div className="messages">
