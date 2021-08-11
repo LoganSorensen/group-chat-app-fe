@@ -4,14 +4,14 @@ const Message = ({ message }) => {
   return (
     <div className="message">
       <div className="img-wrapper">
-        <img src={message.image} alt={message.name} />
+        <img src={message?.image} alt={message?.name} />
       </div>
       <div className="message-details">
         <div className="align-center">
-          <h4>{message.user}</h4>
-          <span>{message.timestamp}</span>
+          <h4>{message?.user}</h4>
+          <span>{message?.timestamp}</span>
         </div>
-        <p>{message.text}</p>
+        <p>{message?.text}</p>
       </div>
     </div>
   );

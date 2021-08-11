@@ -1,7 +1,12 @@
 import { SET_CHANNEL_USERS, SET_CURRENT_CHANNEL } from "../actions/types";
 
 const initialState = {
-  currentChannel: {channel_name: 'Just JS'},
+  currentChannel: {
+    id: 2,
+    channel_name: "Back End",
+    channel_description: "A channel about back end stuff",
+    owner_id: 3,
+  },
   users: [],
   username: "",
   user_id: "",

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import { setSidebarComponent } from "../actions/setPageStateActions";
 import { setCurrentChannel } from "../actions/setChatStateActions";
 
 const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
   const [channels, setChannels] = useState([]);
+
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -39,8 +41,10 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
   };
 
   const joinChannel = (channel) => {
+    // console.log(channel)
     setCurrentChannel(channel);
     setSidebarComponent("channelDetails");
+    // history.go(`/chat/${channel.id}`)
   };
 
   const openModal = () => {
@@ -77,7 +81,7 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
       <div className="channels">
         {channels.map((channel, index) => (
           <Link
-            to={`/${channel.id}`}
+            to={`/chat/${channel.id}`}
             key={index}
             className="channel align-center"
             name={channel.channel_name}

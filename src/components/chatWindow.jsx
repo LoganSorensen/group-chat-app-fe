@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import io from "socket.io-client";
+import React, { useEffect, useState, useRef } from "react";
+import { io } from "socket.io-client";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -7,24 +7,49 @@ import axios from "axios";
 // import { messages } from "../utils/data";
 import Message from "./message";
 import MessageInput from "./messageInput";
-import { setChannelUsers } from "../actions/setChatStateActions";
+import {
+  setChannelUsers,
+  setCurrentChannel,
+} from "../actions/setChatStateActions";
 
-let socket;
+// let socket;
 
-const ChatWindow = ({ channel, setChannelUsers }) => {
+const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState(null)
+  const socket = useRef();
 
   const { channelId } = useParams();
 
-  const ENDPOINT = "localhost:5000";
+  // const ENDPOINT = "localhost:5000";
 
-  const connectionOptions = {
-    "force new connection": true,
-    reconnectionAttempts: "Infinity",
-    timeout: 10000,
-    transports: ["websocket"],
-  };
+  // const connectionOptions = {
+  //   "force new connection": true,
+  //   reconnectionAttempts: "Infinity",
+  //   timeout: 10000,
+  //   transports: ["websocket"],
+  // };
 
+  // console.log(channel);
+
+  useEffect(() => {
+    console.log("joining a new room");
+
+    socket.current = io("ws://localhost:8800");
+
+    socket.current.on("message", (data) => {
+      console.log("message data", data);
+      setNewMessage(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    setMessages(prev => [...prev, newMessage])
+  }, [newMessage])
+
+  // console.log(messages);
+
+  // Gets previous messages from a room
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/messages/${channelId}`)
@@ -33,39 +58,52 @@ const ChatWindow = ({ channel, setChannelUsers }) => {
       })
       .catch((err) => console.log(err));
 
-    socket = io(ENDPOINT, connectionOptions);
+    // socket = io(ENDPOINT, connectionOptions);
 
-    let username = "John";
-    let room = channel.channel_name;
-    console.log(room)
+    // let username = "John";
+    // let room = channel.channel_name;
+    // console.log(room)
 
-    socket.emit("joinRoom", { username, room });
-
-    return () => {
-      socket.disconnect();
-      socket.off();
-    };
-    // eslint-disable-next-line
-  }, [ENDPOINT, channelId]);
-
-  useEffect(() => {
-    const chatMessages = document.querySelector(".messages");
-    socket.on("message", (message) => {
-      setMessages((messages) => [...messages, message]);
-
-      // Scroll to bottom
-      chatMessages.scrollTop = chatMessages.scrollHeight;
+    socket.current.emit("joinRoom", {
+      username: user.username,
+      channel: channel.channel_name,
     });
-  }, []);
 
-  useEffect(() => {
-    socket.on("roomData", ({ users }) => setChannelUsers(users));
+    console.log(channel.channel_name)
+
+    // return () => {
+    //   socket.current.disconnect();
+    //   socket.current.off();
+    // };
     // eslint-disable-next-line
-  }, []);
+  }, [channelId]);
+
+  console.log(channelId)
+
+  // useEffect(() => {
+  //   const chatMessages = document.querySelector(".messages");
+  //   socket.on("message", (message) => {
+  //     console.log('getting a message')
+  //     setMessages((messages) => [...messages, message]);
+
+  //     // Scroll to bottom
+  //     chatMessages.scrollTop = chatMessages.scrollHeight;
+  //   });
+  // }, []);
+
+  // useEffect(() => {
+  //   socket.on("roomData", ({ users }) => setChannelUsers(users));
+  //   // eslint-disable-next-line
+  // }, []);
 
   const sendMessage = (message) => {
     console.log("hitting");
-    if (message) socket.emit("chatMessage", message);
+
+    socket.current.emit("chatMessage", {
+      senderId: user.id,
+      message,
+      channel: channel.channel_name,
+    });
   };
 
   return (
@@ -86,6 +124,9 @@ const ChatWindow = ({ channel, setChannelUsers }) => {
 
 const mapStateToProps = (state) => ({
   channel: state.setChatState.currentChannel,
+  user: state.setUserState.user,
 });
 
-export default connect(mapStateToProps, { setChannelUsers })(ChatWindow);
+export default connect(mapStateToProps, { setChannelUsers, setCurrentChannel })(
+  ChatWindow
+);

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
+import { connect } from "react-redux";
 
+import { setUser } from "../actions/setUserStateActions";
 
-const Login = () => {
+const Login = ({setUser}) => {
 
     const [userCredentials, setUserCredentials] = useState({
       username: "",
@@ -18,10 +20,12 @@ const Login = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       axios
-        .post("http://localhost:5000/users/login", userCredentials)
+        .post("http://localhost:5000/api/auth/login", userCredentials)
         .then((res) => {
+          setUser(res.data.user)
+          // console.log(res.data)
           localStorage.setItem("token", res.data.token);
-          localStorage.setItem("id", res.data.id);
+          localStorage.setItem("user", JSON.stringify(res.data.user));
           history.push("/chat");
         })
         .catch((err) => console.log(err));
@@ -68,5 +72,5 @@ const Login = () => {
     );
   };
   
-  export default Login;
+  export default connect(null, {setUser})(Login);
   
