@@ -5,13 +5,19 @@ import ChatWindow from "./components/chatWindow";
 import AddChannelForm from "./components/addChannelForm";
 import Login from "./components/login";
 import Register from "./components/register";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
     <div className="App">
       <Route exact path="/" component={Login} />
       <Route exact path="/register" component={Register} />
-      <Route path="/chat">
+
+      <PrivateRoute path="/chat" component={Sidebar} />
+      <PrivateRoute path="/chat" component={AddChannelForm} />
+      <PrivateRoute exact path="/chat/:channelId" component={ChatWindow} />
+
+      {/* <PrivateRoute path="/chat">
         <Sidebar />
         <Route exact path="/chat/:channelId" component={ChatWindow} />
         <Route exact path="/chat">
@@ -20,7 +26,7 @@ function App() {
           </div>
         </Route>
         <AddChannelForm />
-      </Route>
+      </PrivateRoute> */}
     </div>
   );
 }
