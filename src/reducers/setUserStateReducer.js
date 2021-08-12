@@ -1,4 +1,4 @@
-import {SET_USER} from "../actions/types";
+import { SET_USER } from "../actions/types";
 
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || null,
@@ -9,8 +9,8 @@ export const setUserState = (state = initialState, action) => {
     case SET_USER:
       return {
         ...state,
-        user: action.payload
-      }
+        user: action.payload,
+      };
     default:
       return state;
   }

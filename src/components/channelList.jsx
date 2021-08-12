@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
 
-import { setSidebarComponent } from "../actions/setPageStateActions";
-import { setCurrentChannel } from "../actions/setChatStateActions";
+import Channel from "./channel";
 
-const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
+const ChannelList = () => {
   const [channels, setChannels] = useState([]);
-
-  const history = useHistory();
+  const [filteredChannels, setFilteredChannels] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     axios
@@ -19,33 +16,6 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
       })
       .catch((err) => console.log(err));
   }, []);
-
-  const abbreviateName = (name) => {
-    const words = name.split(" ");
-    const ignoredWords = ["a", "an", "the", "and"];
-    const allowedWords = [];
-
-    let abbr = "";
-
-    words.forEach((word) => {
-      if (!ignoredWords.includes(word.toLowerCase())) {
-        allowedWords.push(word);
-      }
-    });
-
-    for (let i = 0; i <= 1; i++) {
-      abbr = abbr + allowedWords[i].charAt(0);
-    }
-
-    return abbr;
-  };
-
-  const joinChannel = (channel) => {
-    // console.log(channel)
-    setCurrentChannel(channel);
-    setSidebarComponent("channelDetails");
-    // history.go(`/chat/${channel.id}`)
-  };
 
   const openModal = () => {
     const bodyBlackout = document.querySelector(".body-blackout");
@@ -66,6 +36,17 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
 
   bodyBlackout.addEventListener("click", closeModal);
 
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+    setFilteredChannels(
+      channels.filter((channel) =>
+        channel.channel_name
+          .toLowerCase()
+          .includes(e.target.value.toLowerCase())
+      )
+    );
+  };
+
   return (
     <div className="channel-list">
       <div className="top-tab align-center">
@@ -76,28 +57,24 @@ const ChannelList = ({ setSidebarComponent, setCurrentChannel }) => {
       </div>
       <div className="search-channels align-center">
         <span className="material-icons-outlined">search</span>
-        <input type="text" placeholder="Search" />
+        <input
+          type="text"
+          placeholder="Search"
+          value={query}
+          onChange={handleChange}
+        />
       </div>
       <div className="channels">
-        {channels.map((channel, index) => (
-          <Link
-            to={`/chat/${channel.id}`}
-            key={index}
-            className="channel align-center"
-            name={channel.channel_name}
-            onClick={() => joinChannel(channel)}
-          >
-            <div className="channel-abbr flex-center">
-              {abbreviateName(channel.channel_name)}
-            </div>
-            <p className="channel-name">{channel.channel_name}</p>
-          </Link>
-        ))}
+        {query
+          ? filteredChannels.map((channel) => (
+              <Channel key={channel.id} channel={channel} />
+            ))
+          : channels.map((channel) => (
+              <Channel key={channel.id} channel={channel} />
+            ))}
       </div>
     </div>
   );
 };
 
-export default connect(null, { setSidebarComponent, setCurrentChannel })(
-  ChannelList
-);
+export default ChannelList;
