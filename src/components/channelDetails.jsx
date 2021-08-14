@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { setSidebarComponent } from "../actions/setPageStateActions";
 
 const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
+  const [channelUsers, setChannelUsers] = useState([]);
+
+  useEffect(() => {
+    setChannelUsers(
+      users.filter((user) => channel.channel_name === user.channel)
+    );
+  }, [channel, users]);
+
   const handleClick = () => setSidebarComponent("channelList");
 
   return (
@@ -19,7 +27,7 @@ const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
         <p className="channel-desc">{channel.channel_description}</p>
         <h2 className="members-header">Members</h2>
         <div className="member-list">
-          {users.map((user) => (
+          {channelUsers?.map((user) => (
             <div key={user.id} className="member align-center">
               <div className="img-wrapper">
                 {/* <img src={user.image} alt={user.username} /> */}

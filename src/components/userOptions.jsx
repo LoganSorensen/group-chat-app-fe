@@ -3,10 +3,12 @@ import { Link, useHistory } from "react-router-dom";
 
 const UserOptions = ({ optionsOpen, setOptionsOpen }) => {
   const history = useHistory();
+
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    history.push("/");
+    window.location.reload();
+    // history.push("/");
   };
 
   const handleBlur = (e) => {

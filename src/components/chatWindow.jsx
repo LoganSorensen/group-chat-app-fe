@@ -24,10 +24,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
 
     socket.current = io("ws://localhost:8800");
 
-    socket.current.on("message", (data) => {
-      // console.log("message data", data);
-      setNewMessage(data);
-    });
+    socket.current.on("message", (data) => setNewMessage(data));
   }, []);
 
   useEffect(() => {
@@ -43,12 +40,6 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
       })
       .catch((err) => console.log(err));
 
-    // socket = io(ENDPOINT, connectionOptions);
-
-    // let username = "John";
-    // let room = channel.channel_name;
-    // console.log(room)
-
     socket.current.emit("joinRoom", {
       username: user.username,
       channel: channel?.channel_name,
@@ -60,21 +51,10 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
     // eslint-disable-next-line
   }, [channelId, channel]);
 
-  // useEffect(() => {
-  //   const chatMessages = document.querySelector(".messages");
-  //   socket.on("message", (message) => {
-  //     console.log('getting a message')
-  //     setMessages((messages) => [...messages, message]);
-
-  //     // Scroll to bottom
-  //     chatMessages.scrollTop = chatMessages.scrollHeight;
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   socket.on("roomData", ({ users }) => setChannelUsers(users));
-  //   // eslint-disable-next-line
-  // }, []);
+  useEffect(() => {
+    socket.current.on("roomData", (users) => setChannelUsers(users));
+    // eslint-disable-next-line
+  }, [user]);
 
   const sendMessage = (message) => {
     socket.current.emit("chatMessage", {
