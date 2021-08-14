@@ -226,6 +226,9 @@ a {
   border: none;
   cursor: pointer;
 }
+.sidebar .user-tab .options-arrow {
+  transition: 0.4s ease;
+}
 .chat-window {
   background-color: #252329;
   height: 100vh;
@@ -614,4 +617,159 @@ a {
 }
 .login-form h2 {
   margin-bottom: 2.72rem;
+}
+.user-profile {
+  margin: 10rem auto 0;
+}
+.user-profile-info {
+  border: 1px solid #bdbdbd;
+  border-radius: 12px;
+  margin: 0 auto;
+  width: 90rem;
+}
+.user-profile-info .user-info-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 3.9rem 4.9rem;
+  border-bottom: 1px solid #bdbdbd;
+}
+.user-profile-info .user-info-header span {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #828282;
+}
+.user-profile-info .user-info-header button {
+  color: #828282;
+  background-color: transparent;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border: 1px solid #828282;
+  border-radius: 12px;
+  padding: 0.8rem 3.3rem;
+  cursor: pointer;
+}
+.user-profile-info .user-info-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 2.4rem 4.9rem;
+  border-bottom: 1px solid #e0e0e0;
+}
+.user-profile-info .user-info-row .image-wrapper {
+  width: 7.2rem;
+  height: 7.2rem;
+  background-color: #c4c4c4;
+  border-radius: 8px;
+}
+.user-profile-info .user-info-row .row-name {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #bdbdbd;
+  align-self: center;
+}
+.user-profile-info .user-info-row .row-data {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #e0e0e0;
+}
+.user-profile-info .photo-row {
+  padding: 1.5rem 4.9rem;
+}
+.user-profile-info .name-row {
+  border: none;
+}
+.profile-page {
+  padding: 2.5rem 7.2rem;
+  width: 100%;
+}
+.profile-page header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4rem;
+}
+.profile-page header .account {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.profile-page header .image-wrapper {
+  width: 3.2rem;
+  height: 3.2rem;
+  background-color: #c4c4c4;
+  border-radius: 8px;
+  margin-right: 1.1rem;
+}
+.profile-page header span {
+  transition: 0.4s ease;
+  color: #e0e0e0;
+}
+.profile-page header .rotate-arrow {
+  transform: rotate(180deg);
+}
+.profile-page header .user-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-right: 1.9rem;
+  color: #e0e0e0;
+}
+.profile-page header .account-options {
+  position: absolute;
+  top: 5.9rem;
+  right: 0;
+  flex-direction: column;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem 1.2rem;
+  background-color: #252329;
+}
+.profile-page header .account-options button {
+  width: 16.5rem;
+  display: flex;
+  align-items: center;
+  padding: 0.95rem 1.16rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: #4f4f4f;
+  background-color: transparent;
+  cursor: pointer;
+}
+.profile-page header .account-options button:hover {
+  background-color: #3c3942;
+}
+.profile-page header .account-options button,
+.profile-page header .account-options button span {
+  color: #e0e0e0;
+}
+.profile-page header .account-options hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1.2rem 0;
+}
+.profile-page header .account-options .logout-btn,
+.profile-page header .account-options .logout-btn span {
+  color: #eb5757;
+}
+.profile-page header .account-options span {
+  color: #4f4f4f;
+  margin-right: 1rem;
+}
+.profile-page h2 {
+  font-size: 3.6rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+}
+.profile-page p {
+  text-align: center;
+  font-weight: 300;
+  font-size: 1.8rem;
+  margin-bottom: 4.4rem;
+}
+.profile-page h2,
+.profile-page p {
+  color: #e0e0e0;
 }

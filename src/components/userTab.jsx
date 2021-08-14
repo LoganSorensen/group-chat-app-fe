@@ -18,7 +18,7 @@ const UserTab = () => {
       </div>
       <button className="options-btn align-center" id="options-btn">
         <span
-          className="material-icons-outlined"
+          className="material-icons-outlined options-arrow"
           style={{ transform: optionsOpen ? "rotate(180deg)" : null }}
           onClick={toggleUserOptions}
         >
