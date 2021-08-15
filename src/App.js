@@ -6,8 +6,8 @@ import AddChannelForm from "./components/addChannelForm";
 import Login from "./components/login";
 import Register from "./components/register";
 import PrivateRoute from "./components/PrivateRoute";
-import EditUserProfile from "./components/editUserProfile";
-import UserProfile from "./components/userProfile";
+// import EditUserProfile from "./components/editUserProfile";
+// import UserProfile from "./components/userProfile";
 
 import ProfilePage from "./components/profilePage";
 

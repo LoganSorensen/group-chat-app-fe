@@ -1,14 +1,11 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const UserOptions = ({ optionsOpen, setOptionsOpen }) => {
-  const history = useHistory();
-
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     window.location.reload();
-    // history.push("/");
   };
 
   const handleBlur = (e) => {

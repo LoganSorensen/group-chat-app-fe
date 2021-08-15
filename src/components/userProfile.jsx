@@ -7,15 +7,17 @@ const UserProfile = ({ user }) => {
   const [userInfo, setUserInfo] = useState([]);
   const history = useHistory();
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/users/${user.id}`)
-      .then((res) => {
-        console.log(res.data);
-        setUserInfo(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [user]);
+  console.log(user);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:5000/api/users/${user.id}`)
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setUserInfo(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, [user.id]);
 
   return (
     <div className="user-profile">
@@ -32,12 +34,12 @@ const UserProfile = ({ user }) => {
         <div className="user-info-row photo-row">
           <span className="row-name">Photo</span>
           <div className="image-wrapper">
-            <img src={userInfo?.photo} alt="" />
+            <img src={user.profileImg} alt="" />
           </div>
         </div>
         <div className="user-info-row name-row">
           <span className="row-name">Username</span>
-          <span className="row-data">{userInfo.username}</span>
+          <span className="row-data">{user.username}</span>
         </div>
       </div>
     </div>

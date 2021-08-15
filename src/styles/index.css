@@ -659,6 +659,10 @@ a {
   height: 7.2rem;
   background-color: #c4c4c4;
   border-radius: 8px;
+  overflow: hidden;
+}
+.user-profile-info .user-info-row .image-wrapper img {
+  max-width: 100%;
 }
 .user-profile-info .user-info-row .row-name {
   text-transform: uppercase;
@@ -699,6 +703,10 @@ a {
   background-color: #c4c4c4;
   border-radius: 8px;
   margin-right: 1.1rem;
+  overflow: hidden;
+}
+.profile-page header .image-wrapper img {
+  width: 100%;
 }
 .profile-page header span {
   transition: 0.4s ease;
@@ -847,6 +855,10 @@ a {
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+}
+.edit-user-info .edit-image .image-wrapper img {
+  width: 100%;
 }
 .edit-user-info .edit-image .image-wrapper span {
   color: white;

@@ -30,7 +30,7 @@ const ProfilePage = ({ user }) => {
       <header>
         <div className="account" onClick={displayAccountOptions}>
           <div className="image-wrapper">
-            <img src={user?.photo} alt="" />
+            <img src={user?.profileImg} alt="" />
           </div>
           <span className="user-name">{user.username}</span>
           <span className="material-icons dropdown-arrow">arrow_drop_down</span>
