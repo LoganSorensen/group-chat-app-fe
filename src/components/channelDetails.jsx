@@ -30,7 +30,7 @@ const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
           {channelUsers?.map((user) => (
             <div key={user.id} className="member align-center">
               <div className="img-wrapper">
-                {/* <img src={user.image} alt={user.username} /> */}
+                <img src={user.profileImg} alt={user.username} />
               </div>
               <p className="user-name">{user.username}</p>
             </div>

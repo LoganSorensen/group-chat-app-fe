@@ -16,7 +16,6 @@ const EditUserProfile = ({ user, setUser }) => {
     axios
       .get(`http://localhost:5000/api/users/${user.id}`)
       .then((res) => {
-        console.log(res.data);
         setUserInfo({
           username: res.data.username,
           profileImg: res.data.profileImg,
@@ -35,7 +34,7 @@ const EditUserProfile = ({ user, setUser }) => {
     axios
       .put(`http://localhost:5000/api/users/${user.id}`, userInfo)
       .then((res) => {
-        console.log(res.data);
+
         setUser(res.data);
         history.push("/profile");
       })

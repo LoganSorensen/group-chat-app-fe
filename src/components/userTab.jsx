@@ -8,8 +8,6 @@ const UserTab = ({ user }) => {
 
   const toggleUserOptions = () => setOptionsOpen(!optionsOpen);
 
-  console.log(user);
-
   return (
     <div className="user-tab align-center justify-between">
       <div className="user-info align-center">

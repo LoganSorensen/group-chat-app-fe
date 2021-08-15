@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { connect } from "react-redux";
 
 const UserProfile = ({ user }) => {
-  const [userInfo, setUserInfo] = useState([]);
   const history = useHistory();
-
-  console.log(user);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:5000/api/users/${user.id}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       setUserInfo(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, [user.id]);
 
   return (
     <div className="user-profile">

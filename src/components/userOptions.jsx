@@ -10,7 +10,6 @@ const UserOptions = ({ optionsOpen, setOptionsOpen }) => {
 
   const handleBlur = (e) => {
     const optionsBtn = document.getElementById("options-btn");
-    console.log("running");
     if (
       !e.currentTarget.contains(e.relatedTarget) &&
       e.relatedTarget !== optionsBtn

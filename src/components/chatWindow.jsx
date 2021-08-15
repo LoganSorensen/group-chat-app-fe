@@ -20,8 +20,6 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   const { channelId } = useParams();
 
   useEffect(() => {
-    console.log("joining a new room");
-
     socket.current = io("ws://localhost:8800");
 
     socket.current.on("message", (data) => setNewMessage(data));
@@ -42,6 +40,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
 
     socket.current.emit("joinRoom", {
       username: user.username,
+      profileImg: user.profileImg,
       channel: channel?.channel_name,
       previousChannel: previousChannel?.channel_name,
     });
