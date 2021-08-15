@@ -55,9 +55,8 @@ const Login = ({ setUser }) => {
         </div>
         <button>Login</button>
       </form>
-      <p className="alt-auth-opt">or continue with</p>
       <p className="switch-auth">
-        Don't have an account yet? <Link to="/register">Register</Link>
+        Don't have an account yet? <Link to="/register">Register here</Link>
       </p>
     </div>
   );

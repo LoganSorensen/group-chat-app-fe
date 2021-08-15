@@ -56,8 +56,6 @@ const Register = ({ setUser }) => {
         </div>
         <button>Start chatting now</button>
       </form>
-      <p className="alt-auth-opt">or continue with</p>
-      <div className="alt-auth-btns"></div>
       <p className="switch-auth">
         Already a member? <Link to="/">Login</Link>
       </p>

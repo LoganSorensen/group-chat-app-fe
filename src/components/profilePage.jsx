@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
 import { connect } from "react-redux";
 
 import UserProfile from "./userProfile";
-// import EditUserInfo from "./editUserInfo";
+import EditUserProfile from "./editUserProfile";
 import PrivateRoute from "./PrivateRoute";
 
 const ProfilePage = ({ user }) => {
@@ -57,7 +56,7 @@ const ProfilePage = ({ user }) => {
         path="/profile"
         component={UserProfile}
       ></PrivateRoute>
-      {/* <PrivateRoute path="/edit" component={EditUserInfo} /> */}
+      <PrivateRoute path="/profile/edit" component={EditUserProfile} />
     </div>
   );
 };

@@ -1,20 +1,22 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-import { members } from "../utils/data";
 import UserOptions from "./userOptions";
 
-const UserTab = () => {
+const UserTab = ({ user }) => {
   const [optionsOpen, setOptionsOpen] = useState(false);
 
   const toggleUserOptions = () => setOptionsOpen(!optionsOpen);
+
+  console.log(user);
 
   return (
     <div className="user-tab align-center justify-between">
       <div className="user-info align-center">
         <div className="img-wrapper">
-          <img src={members[0].image} alt={members[0].name} />
+          <img src={user.profileImg} alt={user.username} />
         </div>
-        <p className="user-name">{members[0].name}</p>
+        <p className="user-name">{user.username}</p>
       </div>
       <button className="options-btn align-center" id="options-btn">
         <span
@@ -30,4 +32,8 @@ const UserTab = () => {
   );
 };
 
-export default UserTab;
+const mapStateToProps = (state) => ({
+  user: state.setUserState.user,
+});
+
+export default connect(mapStateToProps, {})(UserTab);
