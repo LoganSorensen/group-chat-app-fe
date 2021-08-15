@@ -16,8 +16,13 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   const [newMessage, setNewMessage] = useState(null);
   const [previousChannel, setPreviousChannel] = useState(channel);
   const socket = useRef();
+  const scrollRef = useRef();
 
   const { channelId } = useParams();
+
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     socket.current = io("ws://localhost:8800");
@@ -70,7 +75,9 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
         <div>
           <div className="messages">
             {messages.map((message, index) => (
-              <Message key={index} message={message} />
+              <div key={index} ref={scrollRef}>
+                <Message message={message} />
+              </div>
             ))}
           </div>
           <MessageInput sendMessage={sendMessage} />
