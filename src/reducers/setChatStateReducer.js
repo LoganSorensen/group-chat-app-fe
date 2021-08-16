@@ -1,10 +1,15 @@
-import { SET_CHANNEL_USERS, SET_CURRENT_CHANNEL } from "../actions/types";
+import {
+  SET_CHANNEL_USERS,
+  SET_CURRENT_CHANNEL,
+  SET_NEW_CHANNEL,
+} from "../actions/types";
 
 const initialState = {
   currentChannel: null,
   users: [],
   username: "",
   user_id: "",
+  newChannel: null,
 };
 
 export const setChatState = (state = initialState, action) => {
@@ -18,6 +23,11 @@ export const setChatState = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+      };
+    case SET_NEW_CHANNEL:
+      return {
+        ...state,
+        newChannel: action.payload,
       };
     default:
       return state;

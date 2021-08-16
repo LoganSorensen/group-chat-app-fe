@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import Channel from "./channel";
 
-const ChannelList = () => {
+const ChannelList = ({ newChannel }) => {
   const [channels, setChannels] = useState([]);
   const [filteredChannels, setFilteredChannels] = useState([]);
   const [query, setQuery] = useState("");
@@ -16,6 +17,10 @@ const ChannelList = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+    if (newChannel) setChannels((prev) => [...prev, newChannel]);
+  }, [newChannel]);
 
   const openModal = () => {
     const bodyBlackout = document.querySelector(".body-blackout");
@@ -77,4 +82,8 @@ const ChannelList = () => {
   );
 };
 
-export default ChannelList;
+const mapStateToProps = (state) => ({
+  newChannel: state.setChatState.newChannel,
+});
+
+export default connect(mapStateToProps, {})(ChannelList);

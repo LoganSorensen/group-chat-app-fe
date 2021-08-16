@@ -24,8 +24,12 @@ const Channel = ({ channel, setCurrentChannel, setSidebarComponent }) => {
       }
     });
 
-    for (let i = 0; i <= 1; i++) {
-      abbr = abbr + allowedWords[i].charAt(0);
+    if (words.length > 1) {
+      for (let i = 0; i <= 1; i++) {
+        abbr = abbr + allowedWords[i].charAt(0);
+      }
+    } else {
+      abbr = words[0].charAt(0);
     }
 
     return abbr;

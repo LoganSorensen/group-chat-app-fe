@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { connect } from "react-redux";
 
-const AddChannelForm = () => {
+import { setNewChannel } from "../actions/setChatStateActions";
+
+const AddChannelForm = ({ setNewChannel }) => {
   const [formState, setFormState] = useState({
-    channelName: "",
-    channelDesc: "",
+    channel_name: "",
+    channel_description: "",
   });
 
   const handleChange = (e) => {
@@ -13,7 +17,15 @@ const AddChannelForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setFormState({ channelName: "", channelDesc: "" });
+    axios
+      .post("http://localhost:5000/api/channels", formState)
+      .then((res) => {
+        console.log(res.data);
+        setNewChannel(res.data);
+      })
+      .catch((err) => console.log(err));
+
+    setFormState({ channel_name: "", channel_description: "" });
 
     closeModal();
   };
@@ -32,14 +44,14 @@ const AddChannelForm = () => {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          name="channelName"
-          value={formState.channelName}
+          name="channel_name"
+          value={formState.channel_name}
           placeholder="Channel name"
           onChange={handleChange}
         />
         <textarea
-          name="channelDesc"
-          value={formState.channelDesc}
+          name="channel_description"
+          value={formState.channel_description}
           placeholder="Channel Description"
           onChange={handleChange}
         ></textarea>
@@ -49,4 +61,4 @@ const AddChannelForm = () => {
   );
 };
 
-export default AddChannelForm;
+export default connect(null, { setNewChannel })(AddChannelForm);
