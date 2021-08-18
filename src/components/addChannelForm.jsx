@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import { setNewChannel } from "../actions/setChatStateActions";
+import { baseURL } from "../utils/apiCalls";
 
 const AddChannelForm = ({ setNewChannel }) => {
   const [formState, setFormState] = useState({
@@ -18,7 +19,7 @@ const AddChannelForm = ({ setNewChannel }) => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:5000/api/channels", formState)
+      .post(`${baseURL}/channels`, formState)
       .then((res) => {
         console.log(res.data);
         setNewChannel(res.data);

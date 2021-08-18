@@ -3,6 +3,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import Channel from "./channel";
+import { baseURL } from "../utils/apiCalls";
 
 const ChannelList = ({ newChannel }) => {
   const [channels, setChannels] = useState([]);
@@ -11,7 +12,7 @@ const ChannelList = ({ newChannel }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/channels")
+      .get(`${baseURL}/channels`)
       .then((res) => {
         setChannels(res.data);
       })

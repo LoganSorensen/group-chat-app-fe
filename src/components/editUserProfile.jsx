@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import { setUser } from "../actions/setUserStateActions";
+import { baseURL } from "../utils/apiCalls";
 
 const EditUserProfile = ({ user, setUser }) => {
   const history = useHistory();
@@ -14,7 +15,7 @@ const EditUserProfile = ({ user, setUser }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/users/${user.id}`)
+      .get(`${baseURL}/users/${user.id}`)
       .then((res) => {
         setUserInfo({
           username: res.data.username,
@@ -32,9 +33,8 @@ const EditUserProfile = ({ user, setUser }) => {
     e.preventDefault();
 
     axios
-      .put(`http://localhost:5000/api/users/${user.id}`, userInfo)
+      .put(`${baseURL}/users/${user.id}`, userInfo)
       .then((res) => {
-
         setUser(res.data);
         history.push("/profile");
       })

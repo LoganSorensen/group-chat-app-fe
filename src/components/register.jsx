@@ -4,6 +4,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 
 import { setUser } from "../actions/setUserStateActions";
+import { baseURL } from "../utils/apiCalls";
 
 const Register = ({ setUser }) => {
   const [userCredentials, setUserCredentials] = useState({
@@ -19,7 +20,7 @@ const Register = ({ setUser }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/api/auth/register", userCredentials)
+      .post(`${baseURL}/auth/register`, userCredentials)
       .then((res) => {
         setUser(res.data.user);
         localStorage.setItem("token", res.data.token);

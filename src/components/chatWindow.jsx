@@ -10,8 +10,10 @@ import {
   setChannelUsers,
   setCurrentChannel,
 } from "../actions/setChatStateActions";
+import { baseURL } from "../utils/apiCalls";
 
-const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
+
+const ChatWindow = ({ channel, setChannelUsers, user }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState(null);
   const [previousChannel, setPreviousChannel] = useState(channel);
@@ -25,7 +27,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   }, [messages]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8800");
+    socket.current = io("https://lsorensen-group-chat-app.herokuapp.com/");
 
     socket.current.on("message", (data) => setNewMessage(data));
   }, []);
@@ -37,7 +39,7 @@ const ChatWindow = ({ channel, setChannelUsers, setCurrentChannel, user }) => {
   // Gets previous messages from a room
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/messages/${channelId}`)
+      .get(`${baseURL}/messages/${channelId}`)
       .then((res) => {
         setMessages(res.data);
       })
