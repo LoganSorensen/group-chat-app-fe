@@ -12,7 +12,10 @@ const UserTab = ({ user }) => {
     <div className="user-tab align-center justify-between">
       <div className="user-info align-center">
         <div className="img-wrapper">
-          <img src={user.profileImg || '/assets/noAvatar.png'} alt={user.username} />
+          <img
+            src={user.profileImg || "/assets/noAvatar.png"}
+            alt={user.username}
+          />
         </div>
         <p className="user-name">{user.username}</p>
       </div>

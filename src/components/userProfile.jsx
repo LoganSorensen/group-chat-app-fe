@@ -20,7 +20,7 @@ const UserProfile = ({ user }) => {
         <div className="user-info-row photo-row">
           <span className="row-name">Photo</span>
           <div className="image-wrapper">
-            <img src={user.profileImg || '/assets/noAvatar.png'} alt="" />
+            <img src={user.profileImg || "/assets/noAvatar.png"} alt="" />
           </div>
         </div>
         <div className="user-info-row name-row">

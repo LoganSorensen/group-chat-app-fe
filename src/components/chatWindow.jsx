@@ -12,7 +12,6 @@ import {
 } from "../actions/setChatStateActions";
 import { baseURL } from "../utils/apiCalls";
 
-
 const ChatWindow = ({ channel, setChannelUsers, user }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState(null);

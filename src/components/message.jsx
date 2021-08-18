@@ -4,7 +4,10 @@ const Message = ({ message }) => {
   return (
     <div className="message">
       <div className="img-wrapper">
-        <img src={message?.profileImg || '/assets/noAvatar.png'} alt={message?.name} />
+        <img
+          src={message?.profileImg || "/assets/noAvatar.png"}
+          alt={message?.name}
+        />
       </div>
       <div className="message-details">
         <div className="align-center">
