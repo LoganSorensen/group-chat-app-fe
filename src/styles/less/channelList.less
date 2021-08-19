@@ -4,6 +4,9 @@
     font-weight: 700;
     justify-content: space-between;
     padding: 0 2.5rem 0 3.3rem;
+    @media @tablet {
+      padding: 0 1.5rem;
+    }
 
     .add-channel-btn {
       margin: 0;
@@ -22,10 +25,16 @@
     margin: 1.95rem 0 3.5rem;
     padding: 0 2.5rem 0 3.3rem;
     position: relative;
+    @media @laptop {
+      padding: 0 2rem;
+    }
 
     span {
       position: absolute;
       left: 3.3rem + 1%;
+      @media @laptop {
+        left: 3rem;
+      }
     }
 
     input {
@@ -44,6 +53,9 @@
 
   .channels {
     padding: 0 2.5rem 0 3.3rem;
+    @media @laptop {
+      padding: 0 2rem;
+    }
   }
 
   .channel {
@@ -56,6 +68,9 @@
     cursor: pointer;
     &:hover {
       background-color: @bg-hover;
+    }
+    @media @laptop {
+      padding: 1rem 0;
     }
   }
 

@@ -64,8 +64,14 @@ a {
 
 .top-tab {
   padding: 1.724rem 0;
-  max-height: @top-tab-height;
+  height: @top-tab-height;
   min-height: @top-tab-height;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-height: 800px) {
+    height: 8vh;
+  }
 }
 
 .body-blackout {

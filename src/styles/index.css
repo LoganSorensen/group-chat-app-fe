@@ -180,8 +180,15 @@ a {
 }
 .top-tab {
   padding: 1.724rem 0;
-  max-height: 5.5vh;
+  height: 5.5vh;
   min-height: 5.5vh;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-height: 800px) {
+  .top-tab {
+    height: 8vh;
+  }
 }
 .body-blackout {
   display: none;
@@ -196,6 +203,16 @@ a {
   height: 100vh;
   background-color: #120f13;
   position: relative;
+}
+@media (max-width: 1440px) {
+  .sidebar {
+    width: 30vw;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 40vw;
+  }
 }
 .sidebar .top-tab {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -214,11 +231,21 @@ a {
 .sidebar .user-tab {
   background-color: #0b090c;
   width: 100%;
-  max-height: 6.98vh;
+  height: 6.98vh;
   position: absolute;
   bottom: 0%;
   padding: 1.5rem 2.78rem 1.8rem;
   justify-content: space-between;
+}
+@media screen and (max-height: 800px) {
+  .sidebar .user-tab {
+    height: 10vh;
+  }
+}
+@media (max-width: 768px) {
+  .sidebar .user-tab {
+    padding: 1.5rem 1.8rem;
+  }
 }
 .sidebar .user-tab .options-btn {
   background-color: transparent;
@@ -287,6 +314,11 @@ a {
 }
 .message-input {
   padding: 0 7rem;
+}
+@media (max-width: 768px) {
+  .message-input {
+    padding: 0 3rem;
+  }
 }
 .message-input form {
   position: relative;
@@ -408,6 +440,11 @@ a {
   justify-content: space-between;
   padding: 0 2.5rem 0 3.3rem;
 }
+@media (max-width: 768px) {
+  .channel-list .top-tab {
+    padding: 0 1.5rem;
+  }
+}
 .channel-list .top-tab .add-channel-btn {
   margin: 0;
   width: 3.2rem;
@@ -424,9 +461,19 @@ a {
   padding: 0 2.5rem 0 3.3rem;
   position: relative;
 }
+@media (max-width: 1024px) {
+  .channel-list .search-channels {
+    padding: 0 2rem;
+  }
+}
 .channel-list .search-channels span {
   position: absolute;
   left: 4.3rem;
+}
+@media (max-width: 1024px) {
+  .channel-list .search-channels span {
+    left: 3rem;
+  }
 }
 .channel-list .search-channels input {
   padding: 1.45rem 4.45rem;
@@ -443,6 +490,11 @@ a {
 .channel-list .channels {
   padding: 0 2.5rem 0 3.3rem;
 }
+@media (max-width: 1024px) {
+  .channel-list .channels {
+    padding: 0 2rem;
+  }
+}
 .channel-list .channel {
   margin-bottom: 1.16rem;
   padding: 1rem;
@@ -454,6 +506,11 @@ a {
 }
 .channel-list .channel:hover {
   background-color: #3c393f;
+}
+@media (max-width: 1024px) {
+  .channel-list .channel {
+    padding: 1rem 0;
+  }
 }
 .channel-list .channel-name,
 .channel-list .channel-abbr {

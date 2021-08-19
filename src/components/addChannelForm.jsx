@@ -21,7 +21,6 @@ const AddChannelForm = ({ setNewChannel }) => {
     axios
       .post(`${baseURL}/channels`, formState)
       .then((res) => {
-        console.log(res.data);
         setNewChannel(res.data);
       })
       .catch((err) => console.log(err));
