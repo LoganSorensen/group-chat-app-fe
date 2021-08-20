@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const MessageInput = ({ sendMessage }) => {
+const MessageInput = ({ sendMessage, currentChannel }) => {
   const [message, setMessage] = useState("");
 
   const handleChange = (e) => setMessage(e.target.value);
@@ -17,7 +18,7 @@ const MessageInput = ({ sendMessage }) => {
         <input
           type="text"
           value={message}
-          placeholder={`Message Front-End Developers`}
+          placeholder={`Message ${currentChannel.channel_name}`}
           onChange={handleChange}
         />
         <button className="flex-center">
@@ -28,4 +29,8 @@ const MessageInput = ({ sendMessage }) => {
   );
 };
 
-export default MessageInput;
+const mapStateToProps = (state) => ({
+  currentChannel: state.setChatState.currentChannel,
+});
+
+export default connect(mapStateToProps, {})(MessageInput);
