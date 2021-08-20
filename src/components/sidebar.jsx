@@ -6,8 +6,17 @@ import ChannelDetails from "./channelDetails";
 import ChannelList from "./channelList";
 
 const Sidebar = ({ sidebarComponent }) => {
+  const closeSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+
+    sidebar.classList.remove("sidebar--open");
+  };
+
   return (
-    <div className="sidebar">
+    <div className="sidebar sidebar--open">
+      <button className="close-sidebar-btn" onClick={closeSidebar}>
+        <span className="material-icons-outlined">close</span>
+      </button>
       {sidebarComponent === "channelDetails" && <ChannelDetails />}
       {sidebarComponent === "channelList" && <ChannelList />}
       <UserTab />

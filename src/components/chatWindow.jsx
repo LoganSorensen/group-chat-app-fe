@@ -69,9 +69,20 @@ const ChatWindow = ({ channel, setChannelUsers, user }) => {
     });
   };
 
+  const openSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+
+    sidebar.classList.add("sidebar--open");
+  };
+
   return (
     <div className={channel ? "chat-window" : "no-channel chat-window"}>
-      <div className="channel-name-tab top-tab">{channel?.channel_name}</div>
+      <div className="channel-name-tab top-tab">
+        <button className="open-sidebar-btn" onClick={openSidebar}>
+          <span className="material-icons-outlined">menu</span>
+        </button>
+        {channel?.channel_name}
+      </div>
       {channel ? (
         <div>
           <div className="messages">

@@ -6,12 +6,34 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media @tablet {
+    width: 100vw;
+    padding-bottom: 1.5rem;
+  }
 
   .channel-name-tab {
     font-weight: 700;
     text-transform: uppercase;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 1.724rem 7rem;
+    @media @tablet {
+      padding: 1.7rem 3rem;
+    }
+  }
+
+  .open-sidebar-btn {
+    background-color: transparent;
+    color: white;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-right: 2rem;
+    @media @tablet {
+      display: flex;
+    }
   }
 }
 
@@ -108,4 +130,7 @@
   color: @text-gray;
   font-size: 3rem;
   font-weight: 600;
+  @media @tablet {
+    margin-top: 30rem;
+  }
 }
