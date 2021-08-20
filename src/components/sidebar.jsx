@@ -13,7 +13,7 @@ const Sidebar = ({ sidebarComponent }) => {
   };
 
   return (
-    <div className="sidebar sidebar--open">
+    <div className="sidebar">
       <button className="close-sidebar-btn" onClick={closeSidebar}>
         <span className="material-icons-outlined">close</span>
       </button>

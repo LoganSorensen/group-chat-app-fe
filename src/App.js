@@ -9,6 +9,11 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./components/profilePage";
 
 function App() {
+  const openSidebar = () => {
+    const sidebar = document.querySelector(".sidebar");
+
+    sidebar.classList.add("sidebar--open");
+  };
   return (
     <div className="App">
       <Route exact path="/" component={Login} />
@@ -16,8 +21,15 @@ function App() {
       <PrivateRoute path="/chat" component={Sidebar} />
       <PrivateRoute path="/chat" component={AddChannelForm} />
       <Route exact path="/chat">
-        <div className="join-channel-msg">
-          Join a channel to start chatting!
+        <div>
+          <div className="channel-name-tab top-tab">
+            <button className="open-sidebar-btn" onClick={openSidebar}>
+              <span className="material-icons-outlined">menu</span>
+            </button>
+          </div>
+          <div className="join-channel-msg">
+            Join a channel to start chatting!
+          </div>
         </div>
       </Route>
       <PrivateRoute exact path="/chat/:channelId" component={ChatWindow} />
