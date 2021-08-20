@@ -147,7 +147,6 @@ a {
 }
 .App {
   display: flex;
-  min-width: 100vw;
 }
 .flex-center {
   display: flex;
@@ -198,6 +197,24 @@ a {
   height: 100vh;
   position: absolute;
   z-index: 2;
+}
+.no-channel-page {
+  width: 78vw;
+}
+@media (max-width: 768px) {
+  .no-channel-page {
+    width: 100vw;
+  }
+}
+.no-channel-page .channels-span {
+  display: none;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .no-channel-page .channels-span {
+    display: block;
+  }
 }
 .open-sidebar-btn {
   background-color: transparent;

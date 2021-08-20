@@ -21,11 +21,12 @@ function App() {
       <PrivateRoute path="/chat" component={Sidebar} />
       <PrivateRoute path="/chat" component={AddChannelForm} />
       <Route exact path="/chat">
-        <div>
+        <div className="no-channel-page">
           <div className="channel-name-tab top-tab">
             <button className="open-sidebar-btn" onClick={openSidebar}>
               <span className="material-icons-outlined">menu</span>
             </button>
+            <span className="channels-span">Channels</span>
           </div>
           <div className="join-channel-msg">
             Join a channel to start chatting!
