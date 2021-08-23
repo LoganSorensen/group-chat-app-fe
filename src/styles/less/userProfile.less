@@ -6,13 +6,16 @@
   border: 1px solid #bdbdbd;
   border-radius: 12px;
   margin: 0 auto;
-  width: 90rem;
+  max-width: 90rem;
 
   .user-info-header {
     display: flex;
     justify-content: space-between;
     padding: 3.9rem 4.9rem;
     border-bottom: 1px solid #bdbdbd;
+    @media @tablet {
+      padding: 3rem 2rem;
+    }
 
     span {
       font-size: 1.3rem;
@@ -37,6 +40,9 @@
     grid-template-columns: 1fr 2fr;
     padding: 2.4rem 4.9rem;
     border-bottom: 1px solid #e0e0e0;
+    @media @tablet {
+      padding: 2rem 2rem;
+    }
 
     .image-wrapper {
       width: 7.2rem;
@@ -67,6 +73,9 @@
 
   .photo-row {
     padding: 1.5rem 4.9rem;
+    @media @tablet {
+      padding: 1.5rem 2rem;
+    }
   }
 
   .name-row {

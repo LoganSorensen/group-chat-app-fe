@@ -806,13 +806,18 @@ a {
   border: 1px solid #bdbdbd;
   border-radius: 12px;
   margin: 0 auto;
-  width: 90rem;
+  max-width: 90rem;
 }
 .user-profile-info .user-info-header {
   display: flex;
   justify-content: space-between;
   padding: 3.9rem 4.9rem;
   border-bottom: 1px solid #bdbdbd;
+}
+@media (max-width: 768px) {
+  .user-profile-info .user-info-header {
+    padding: 3rem 2rem;
+  }
 }
 .user-profile-info .user-info-header span {
   font-size: 1.3rem;
@@ -834,6 +839,11 @@ a {
   grid-template-columns: 1fr 2fr;
   padding: 2.4rem 4.9rem;
   border-bottom: 1px solid #e0e0e0;
+}
+@media (max-width: 768px) {
+  .user-profile-info .user-info-row {
+    padding: 2rem 2rem;
+  }
 }
 .user-profile-info .user-info-row .image-wrapper {
   width: 7.2rem;
@@ -860,12 +870,23 @@ a {
 .user-profile-info .photo-row {
   padding: 1.5rem 4.9rem;
 }
+@media (max-width: 768px) {
+  .user-profile-info .photo-row {
+    padding: 1.5rem 2rem;
+  }
+}
 .user-profile-info .name-row {
   border: none;
 }
 .profile-page {
   padding: 2.5rem 7.2rem;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
+}
+@media (max-width: 768px) {
+  .profile-page {
+    padding: 2rem 1rem;
+  }
 }
 .profile-page header {
   display: flex;
@@ -963,7 +984,7 @@ a {
   color: #e0e0e0;
 }
 .edit-user-info {
-  width: 70rem;
+  max-width: 70rem;
   margin: 0 auto;
 }
 .edit-user-info a {
@@ -982,6 +1003,11 @@ a {
   flex-direction: column;
   font-size: 1.3rem;
   font-weight: 500;
+}
+@media (max-width: 425px) {
+  .edit-user-info form {
+    padding: 3rem 2rem;
+  }
 }
 .edit-user-info form span {
   font-size: 1.3rem;
