@@ -40,7 +40,12 @@ const AddChannelForm = ({ setNewChannel }) => {
 
   return (
     <div className="add-channel-form">
-      <h3>New Channel</h3>
+      <div className="channel-form-header">
+        <h3>New Channel</h3>
+        <button className="close-modal-btn" onClick={closeModal}>
+          <span className="material-icons-outlined">close</span>
+        </button>
+      </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -55,7 +60,7 @@ const AddChannelForm = ({ setNewChannel }) => {
           placeholder="Channel Description"
           onChange={handleChange}
         ></textarea>
-        <button>Save</button>
+        <button className="save-btn">Save</button>
       </form>
     </div>
   );

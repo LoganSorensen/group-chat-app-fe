@@ -196,7 +196,7 @@ a {
   width: 100vw;
   height: 120vh;
   position: absolute;
-  z-index: 2;
+  z-index: 5;
 }
 .no-channel-page {
   width: 78vw;
@@ -622,18 +622,32 @@ a {
 .add-channel-form {
   display: none;
   position: absolute;
-  z-index: 3;
+  z-index: 6;
   padding: 3.4rem 4rem 2.2rem;
   margin: auto;
   inset: 0;
   width: 65.6rem;
+  max-width: 96vw;
   height: 35.9rem;
   background-color: #120f13;
   border-radius: 24px;
 }
+.add-channel-form .channel-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.66rem;
+}
 .add-channel-form h3 {
   text-transform: uppercase;
-  margin-bottom: 2.66rem;
+}
+.add-channel-form .close-modal-btn {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
 }
 .add-channel-form form {
   display: flex;
@@ -662,7 +676,7 @@ a {
   margin-bottom: 2.15rem;
   height: 11.55rem;
 }
-.add-channel-form button {
+.add-channel-form .save-btn {
   font-size: 1.8rem;
   width: 9.9rem;
   padding: 0.7rem 3rem;
