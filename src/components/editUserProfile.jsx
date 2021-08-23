@@ -53,7 +53,7 @@ const EditUserProfile = ({ user, setUser }) => {
           id="edit-photo-field"
           placeholder="Enter your image url..."
           name="profileImg"
-          value={userInfo.profileImg}
+          value={userInfo.profileImg || ""}
           onChange={handleChange}
         />
         <label htmlFor="edit-username-field">Username</label>

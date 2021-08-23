@@ -75,8 +75,6 @@ const ChatWindow = ({ channel, setChannelUsers, user }) => {
     sidebar.classList.add("sidebar--open");
   };
 
-  console.log(window.innerHeight);
-
   return (
     <div
       style={{ height: window.innerHeight }}
