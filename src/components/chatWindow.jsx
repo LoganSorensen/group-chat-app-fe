@@ -75,8 +75,13 @@ const ChatWindow = ({ channel, setChannelUsers, user }) => {
     sidebar.classList.add("sidebar--open");
   };
 
+  console.log(window.innerHeight);
+
   return (
-    <div className={channel ? "chat-window" : "no-channel chat-window"}>
+    <div
+      style={{ height: window.innerHeight }}
+      className={channel ? "chat-window" : "no-channel chat-window"}
+    >
       <div className="channel-name-tab top-tab">
         <button className="open-sidebar-btn" onClick={openSidebar}>
           <span className="material-icons-outlined">menu</span>
@@ -85,7 +90,10 @@ const ChatWindow = ({ channel, setChannelUsers, user }) => {
       </div>
       {channel ? (
         <div>
-          <div className="messages">
+          <div
+            className="messages"
+            style={{ maxHeight: `calc(${window.innerHeight}px - 15.5vh)` }}
+          >
             {messages.map((message, index) => (
               <div key={index} ref={scrollRef}>
                 <Message message={message} />

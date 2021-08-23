@@ -194,7 +194,7 @@ a {
   display: none;
   background-color: rgba(18, 15, 19, 0.5);
   width: 100vw;
-  height: 100vh;
+  height: 120vh;
   position: absolute;
   z-index: 2;
 }
@@ -250,7 +250,6 @@ a {
 }
 .sidebar {
   width: 22vw;
-  height: 100vh;
   background-color: #120f13;
   position: relative;
 }
@@ -336,7 +335,6 @@ a {
 }
 .chat-window {
   background-color: #252329;
-  height: 100vh;
   width: 78vw;
   padding-bottom: 3.9rem;
   display: flex;
@@ -356,7 +354,6 @@ a {
 .messages {
   padding: 3rem 7rem;
   overflow: auto;
-  max-height: 84.5vh;
 }
 .messages::-webkit-scrollbar {
   width: 10px;
@@ -462,7 +459,6 @@ a {
   position: relative;
   padding: 0 3.3rem;
   padding-bottom: 2.5rem;
-  max-height: 87.52vh;
   overflow-y: auto;
 }
 .channel-details .channel-info::-webkit-scrollbar {
