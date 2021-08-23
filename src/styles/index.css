@@ -451,6 +451,11 @@ a {
     margin-top: 30rem;
   }
 }
+@media (max-width: 425px) {
+  .join-channel-msg {
+    margin-top: 20rem;
+  }
+}
 .channel-details .top-tab {
   padding-left: 2rem;
   margin-bottom: 2.5rem;
@@ -687,6 +692,7 @@ a {
 }
 .auth-form {
   width: 47.4rem;
+  max-width: 95vw;
   padding: 5.1rem 5.9rem 4.3rem;
   margin: 10rem auto 0;
   border: 1px solid #bdbdbd;

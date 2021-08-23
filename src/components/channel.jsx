@@ -9,6 +9,8 @@ const Channel = ({ channel, setCurrentChannel, setSidebarComponent }) => {
   const joinChannel = (channel) => {
     setCurrentChannel(channel);
     setSidebarComponent("channelDetails");
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.classList.remove("sidebar--open");
   };
 
   const abbreviateName = (name) => {
