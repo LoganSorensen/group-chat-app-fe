@@ -24,7 +24,7 @@ const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
       </div>
       <div
         className="channel-info"
-        style={{ maxHeight: `calc(${window.innerHeight}px - 12.48vh)` }}
+        style={{ maxHeight: `calc(${window.innerHeight}px - 17.48vh)` }}
       >
         <h2>{channel.channel_name}</h2>
         <p className="channel-desc">{channel.channel_description}</p>

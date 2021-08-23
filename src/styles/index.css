@@ -637,6 +637,11 @@ a {
   background-color: #120f13;
   border-radius: 24px;
 }
+@media (max-width: 425px) {
+  .add-channel-form {
+    padding: 2rem;
+  }
+}
 .add-channel-form .channel-form-header {
   display: flex;
   justify-content: space-between;
@@ -697,6 +702,11 @@ a {
   margin: 10rem auto 0;
   border: 1px solid #bdbdbd;
   border-radius: 24px;
+}
+@media (max-width: 425px) {
+  .auth-form {
+    padding: 5.1rem 3rem 4.3rem;
+  }
 }
 .auth-form .logo {
   margin-bottom: 3rem;
