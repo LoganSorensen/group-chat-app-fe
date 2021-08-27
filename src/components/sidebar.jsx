@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 
 import UserTab from "./userTab";
@@ -12,8 +12,23 @@ const Sidebar = ({ sidebarComponent }) => {
     sidebar.classList.remove("sidebar--open");
   };
 
+  // updates window.innerHeight on resize
+  const useWindowSize = () => {
+    const [height, setHeight] = useState(window.innerHeight);
+
+    useLayoutEffect(() => {
+      function updateHeight() {
+        setHeight(window.innerHeight);
+      }
+      window.addEventListener("resize", updateHeight);
+      updateHeight();
+      return () => window.removeEventListener("resize", updateHeight);
+    }, []);
+    return height;
+  };
+
   return (
-    <div className="sidebar" style={{ height: window.innerHeight }}>
+    <div className="sidebar" style={{ height: useWindowSize() }}>
       <button className="close-sidebar-btn" onClick={closeSidebar}>
         <span className="material-icons-outlined">close</span>
       </button>

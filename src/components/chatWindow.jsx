@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import { io } from "socket.io-client";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -75,9 +75,24 @@ const ChatWindow = ({ channel, setChannelUsers, user }) => {
     sidebar.classList.add("sidebar--open");
   };
 
+  // updates window.innerHeight on resize
+  const useWindowSize = () => {
+    const [height, setHeight] = useState(window.innerHeight);
+
+    useLayoutEffect(() => {
+      function updateHeight() {
+        setHeight(window.innerHeight);
+      }
+      window.addEventListener("resize", updateHeight);
+      updateHeight();
+      return () => window.removeEventListener("resize", updateHeight);
+    }, []);
+    return height;
+  };
+
   return (
     <div
-      style={{ height: window.innerHeight }}
+      style={{ height: useWindowSize() }}
       className={channel ? "chat-window" : "no-channel chat-window"}
     >
       <div className="channel-name-tab top-tab">

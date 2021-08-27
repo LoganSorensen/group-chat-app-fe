@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { connect } from "react-redux";
 
 import { setSidebarComponent } from "../actions/setPageStateActions";
@@ -14,6 +14,21 @@ const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
 
   const handleClick = () => setSidebarComponent("channelList");
 
+  // updates window.innerHeight on resize
+  const useWindowSize = () => {
+    const [height, setHeight] = useState(window.innerHeight);
+
+    useLayoutEffect(() => {
+      function updateHeight() {
+        setHeight(window.innerHeight);
+      }
+      window.addEventListener("resize", updateHeight);
+      updateHeight();
+      return () => window.removeEventListener("resize", updateHeight);
+    }, []);
+    return height;
+  };
+
   return (
     <div className="channel-details">
       <div className="top-tab align-center">
@@ -24,7 +39,7 @@ const ChannelDetails = ({ setSidebarComponent, channel, users }) => {
       </div>
       <div
         className="channel-info"
-        style={{ maxHeight: `calc(${window.innerHeight}px - 17.48vh)` }}
+        style={{ maxHeight: `calc(${useWindowSize()}px - 17.48vh)` }}
       >
         <h2>{channel.channel_name}</h2>
         <p className="channel-desc">{channel.channel_description}</p>
